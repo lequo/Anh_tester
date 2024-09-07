@@ -26,7 +26,6 @@ public class Du_an_test extends setup {
     public void Admin() throws InterruptedException {
         Thread.sleep(20000);
         driver.findElement(By.xpath("//a[normalize-space()='']"));
-
     }
 
 
