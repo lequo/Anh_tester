@@ -1,47 +1,25 @@
 package testcase;
 
-import common.BaseSetUp;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import panel.loginPanel;
+import panel.loginpage;
 import common.BaseSetUp;
-import static java.sql.DriverManager.getDriver;
 
-public class loginTest extends loginPanel {
-    private WebDriver driver;
-    public loginPanel loginPanel;
-    public  BaseSetUp baseSetUp;
+public class loginTest extends BaseSetUp {
 
-    public loginTest(WebDriver driver) {
-        super(driver);
-    }
-
+    private loginpage loginpage;
 
     @BeforeClass
     public void setUp() {
-        driver = getDriver();
+
+        loginpage = new loginpage(driver);
     }
 
-    @Test()
-    public void signIn() throws Exception {
-        System.out.println(driver);
-        loginPanel = new loginPanel(driver);
-
-        Assert.assertTrue(loginPanel.verifySignInPageTitle(), "Sign In page title doesn't match");
-        Assert.assertTrue(loginPanel.verifySignInPageText(), "Header page text not matching");
-
-        loginPanel.signin("thaian@mailinator.com", "Demo@123", "123456");
-
-    }
-
-
-    public WebDriver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(WebDriver driver) {
-        this.driver = driver;
+    @Test
+    public void testLogin() {
+        System.out.println("Check driver: " + driver);
+        loginpage = new loginpage(driver);
+        loginpage.login("Admin", "admin123");
     }
 }
